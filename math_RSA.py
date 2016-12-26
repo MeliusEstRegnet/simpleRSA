@@ -9,9 +9,14 @@ The intent for this file is to create a library of functions to use in a main sc
 this file.
 """
 
+"""Python library imports."""
 import math
 import random
 import logging
+
+"""Adjacent file includes."""
+import prime_generator
+
 
 """ This line sets the logging level to DEBUG.  Default is WARNING, above DEBUG.  In order to not
 print any debug statements, simply comment this line out. """
@@ -23,18 +28,17 @@ logging.basicConfig(level=logging.DEBUG)
 growing in complexity. """
 
 
-"""Returns a random prime number between 2 and x. Basic method."""
+"""Returns a random prime number between 2 and x. Basic method.
 def prime1(x):
     a = random.randrange(2, x)
     logging.debug('a is %i', a)
     for i in range(2, math.floor(math.sqrt(x))):
         if a % i == 0:
-            """Not prime."""
             return -1
     else:
         return 1
-
-logging.debug(prime1(100))
+"""
+logging.debug(prime_generator.prime1(100, 200))
 
 
 p = 61
