@@ -122,8 +122,29 @@ The encryption function for a plaintext message m is c(m) = m^e % n
 For ciphertext c, the decryption function is m(c) = c^d % n
 """
 
+"""
+This is the 'outer' function.  It will be called by the code that handles encryption
+and decryption.  It takes as an argument the bit length of the prospective encryption
+and outputs the public and private keys as a dictionary.
+"""
+def key_generator(bit_length):
 
+    p = prime_generator.prime1(2**bit_length - random.randrange(0, 2**(bit_length - 1))
+        (2**bit_length + random.randrange(0, 2**(bit_length - 1))))
+    q = prime_generator.prime1(2**bit_length - random.randrange(0, 2**(bit_length - 1))
+        (2**bit_length + random.randrange(0, 2**(bit_length - 1))))
+    n = p * q
 
+    phi = n - (p + q - 1)
+
+    e = choose_e(phi)
+
+    d = extended_euclidean_algorithm(e, phi)
+
+    public_key = (n, e)
+    private_key = d
+
+    return { 'public key':public_key, 'private_key':private_key }
 
 
 
